@@ -1,0 +1,48 @@
+<html>
+
+  <head>
+    <style>
+      .main { padding: 1rem 1rem; background: #8E2DE2; background:
+      -webkit-linear-gradient(to right, #4A00E0, #8E2DE2); background:
+      linear-gradient(to right, #4A00E0, #8E2DE2); } .h1, .h2 { margin: 0; } .h2
+      { color: #3a465a; font-size: 18PX; font-family: Impact, Haettenschweiler,
+      'Arial Narrow Bold', sans-serif; font-weight: bolder; } .h1 {
+      letter-spacing: 0.5rem; color: #3a465a; font-size: 36PX; font-family:
+      monospace; font-weight: bolder; margin: 1rem 0px; } .container {
+      background-color: #ffffff; padding: 1rem; border-radius: 0.3rem; height:
+      100%; } .content { width: 100%; background-color: #dee7f5; border-radius:
+      0.3rem; border: 1px solid #c4cedf; } .content p { margin: 0; color:
+      #3a465a; padding: 0.8rem; }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="container">
+        <div class="h2">TEST MAIL OPT </div>
+        <div class="h1">{{user.otp}}</div>
+        <div class="content">
+          <p>
+            <span>
+              <b>REF&nbsp;:&nbsp;</b>
+              {{user.ref}}
+            </span>
+            <br />
+            <span>
+              <b>EMAIL&nbsp;:&nbsp;</b>
+              {{user.email}}
+            </span>
+          </p>
+          <hr color="#c4cedf" size="1" />
+          <p>
+            <b>WARNING:</b>
+            Your OTP is confidential and should never be shared with anyone. It
+            is intended solely for your use to verify your identity.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>
