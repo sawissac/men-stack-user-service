@@ -46,7 +46,7 @@ docker run -e ME_CONFIG_MONGODB_URL=mongodb://mongoadmin:password@mongo-server:2
 Finally, run the following commands to generate SSL certificates, start the database, and launch the development server:
 
 ```bash
-yarn gen:ssl && yarn db:up && yarn dev
+yarn install && yarn gen:ssl && yarn db:up && yarn dev
 ```
 
 ## Libraries 📚
