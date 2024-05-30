@@ -8,7 +8,7 @@ Simple example for backend men stack.
 
 ```docker
 docker network create mongo_network &&
-docker run -e ME_CONFIG_MONGODB_SERVER=mongo-server -e ME_CONFIG_BASICAUTH_USERNAME=mongoadmin -e ME_CONFIG_BASICAUTH_PASSWORD=password --network=mongo_network  mongo-express:latest
+docker run -e ME_CONFIG_MONGODB_SERVER=mongo-server -e ME_CONFIG_BASICAUTH_USERNAME=username -e ME_CONFIG_BASICAUTH_PASSWORD=password --network=mongo_network  mongo-express:latest
 ```
 
 Config .env
