@@ -4,6 +4,36 @@ Simple example for backend men stack.
 
 # Get Started 🚩
 
+ For db; I use docker:
+
+```docker
+docker network create mongo_network &&
+docker run -e ME_CONFIG_MONGODB_SERVER=mongo-server -e ME_CONFIG_BASICAUTH_USERNAME=mongoadmin -e ME_CONFIG_BASICAUTH_PASSWORD=password --network=mongo_network  mongo-express:latest
+```
+
+Config .env
+```.env
+PORT=3000
+DB_URL=mongodb://username:password@localhost:27017/your_db_name?authSource=admin
+
+#credentials password generator
+CREDENTIALS_PASSWORD_LENGTH=23
+CREDENTIALS_SALTROUND=12
+
+NODE_MAILER_EMAIL_ACC=you_gmail@gmail.com
+NODE_MAILER_EMAIL_PASS=gmail_password
+
+OTP_MAX_ATTEMPTS=3
+```
+
+For interective ui:
+
+```docker cmd
+docker run -e ME_CONFIG_MONGODB_URL=mongodb://mongoadmin:password@mongo-server:27017/app-user?authSource=admin -e ME_CONFIG_BASICAUTH_USERNAME=username -e ME_CONFIG_BASICAUTH_PASSWORD=password -e ME_CONFIG_BASICAUTH=true --network=mongo_network --name mongo-sever-ui -p 8081:8081  -d mongo-express:latest
+```
+
+
+Finally run:
 ```
 yarn gen:ssl && yarn db:up && yarn dev
 ```
