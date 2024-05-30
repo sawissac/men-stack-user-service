@@ -1,22 +1,29 @@
-# MEN (Mongodb, Express, Nodejs) (USER Service)
+# MEN (MongoDB, Express, Node.js) (USER Service)
 
-Simple example for backend men stack.
+This guide provides a simple example for setting up a backend user service using the MEN stack (MongoDB, Express, Node.js).
 
-# Get Started 🚩
+## Get Started 🚩
 
- For db; I use docker:
+To get started with the database setup, we'll use Docker. This will allow us to quickly spin up a MongoDB instance and a Mongo Express interface for easy database management.
 
-```docker
+### Step 1: Set Up MongoDB and Mongo Express with Docker
+
+Create a Docker network and run Mongo Express connected to MongoDB:
+
+```bash
 docker network create mongo_network &&
-docker run -e ME_CONFIG_MONGODB_SERVER=mongo-server -e ME_CONFIG_BASICAUTH_USERNAME=username -e ME_CONFIG_BASICAUTH_PASSWORD=password --network=mongo_network  mongo-express:latest
+docker run -e ME_CONFIG_MONGODB_SERVER=mongo-server -e ME_CONFIG_BASICAUTH_USERNAME=username -e ME_CONFIG_BASICAUTH_PASSWORD=password --network=mongo_network mongo-express:latest
 ```
 
-Config .env
-```.env
+### Step 2: Configure Environment Variables
+
+Create a `.env` file in the root of your project and add the following configuration:
+
+```
 PORT=3000
 DB_URL=mongodb://username:password@localhost:27017/your_db_name?authSource=admin
 
-#credentials password generator
+# Credentials password generator
 CREDENTIALS_PASSWORD_LENGTH=23
 CREDENTIALS_SALTROUND=12
 
@@ -26,23 +33,29 @@ NODE_MAILER_EMAIL_PASS=gmail_password
 OTP_MAX_ATTEMPTS=3
 ```
 
-For interective ui:
+### Step 3: Run Interactive UI
 
-```docker cmd
-docker run -e ME_CONFIG_MONGODB_URL=mongodb://mongoadmin:password@mongo-server:27017/app-user?authSource=admin -e ME_CONFIG_BASICAUTH_USERNAME=username -e ME_CONFIG_BASICAUTH_PASSWORD=password -e ME_CONFIG_BASICAUTH=true --network=mongo_network --name mongo-sever-ui -p 8081:8081  -d mongo-express:latest
+To run Mongo Express for a more interactive UI experience, use the following Docker command:
+
+```bash
+docker run -e ME_CONFIG_MONGODB_URL=mongodb://mongoadmin:password@mongo-server:27017/app-user?authSource=admin -e ME_CONFIG_BASICAUTH_USERNAME=username -e ME_CONFIG_BASICAUTH_PASSWORD=password -e ME_CONFIG_BASICAUTH=true --network=mongo_network --name mongo-server-ui -p 8081:8081 -d mongo-express:latest
 ```
 
+### Step 4: Start the Application
 
-Finally run:
-```
+Finally, run the following commands to generate SSL certificates, start the database, and launch the development server:
+
+```bash
 yarn gen:ssl && yarn db:up && yarn dev
 ```
 
-# Lib 📚
+## Libraries 📚
+
+Here are the dependencies and devDependencies required for this project, as defined in your `package.json`:
 
 ```json
 {
-    "dependencies": {
+  "dependencies": {
     "@types/jsonwebtoken": "^9.0.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
@@ -75,5 +88,6 @@ yarn gen:ssl && yarn db:up && yarn dev
     "typescript": "^5.4.5"
   }
 }
-
 ```
+
+This setup will provide a robust foundation for developing a user service with the MEN stack. Ensure that you have all these libraries installed and configured properly to avoid any issues during development.
